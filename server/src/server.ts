@@ -1,17 +1,14 @@
-import express from 'express'
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import routes from './routes';
 
-const app = express()
+const app = express();
 
-app.get('/users', (request, response) => {
-  console.log('Listagem de usuários')
+app.use(cors()); //colocar dominío da aplicaçao que pode acessar no caso o frontend
+app.use(express.json());
+app.use(routes);
 
-  response.json([
-    'Hállex',
-    'Hállan',
-    'Diego',
-    'Deschamps',
-    'Montano'
-  ])
-})
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
-app.listen(3333)
+app.listen(3333);
