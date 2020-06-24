@@ -67,7 +67,9 @@ const CreatePoint = () => {
 
   useEffect(() => {
     //<IBEGEUFResponse[]> estou falando que o axios vai retornar um array com esse formato da interface.
-    axios.get<IBEGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
+    axios
+    .get<IBEGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+    .then(response => {
       const ufInitials = response.data.map(uf => uf.sigla);
     
       setUfs(ufInitials);
