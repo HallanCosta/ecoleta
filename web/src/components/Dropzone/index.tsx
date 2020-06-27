@@ -40,7 +40,6 @@ const Dropzone: React.FC<Props> = ({ onFileUploaded }) => {
         )
       }
 
-     
     </div>
   )
 }

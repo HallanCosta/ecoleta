@@ -53,8 +53,8 @@ const CreatePoint = () => {
 
   const history = useHistory();
 
-
   useEffect(() => {
+    
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
 
@@ -135,8 +135,7 @@ const CreatePoint = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const  { name, email, whatsapp } = formData;
-
+    const { name, email, whatsapp } = formData;
     const uf = selectedUf;
     const city = selectedCity;
     const [latitude, longitude] = selectedPosition;
@@ -144,7 +143,6 @@ const CreatePoint = () => {
 
     const data = new FormData();
 
-   
     data.append('name', name);
     data.append('email', email);
     data.append('whatsapp', whatsapp);
@@ -157,7 +155,6 @@ const CreatePoint = () => {
     if (selectedFile) {
       data.append('image', selectedFile);
     }
-  
 
     await api.post('points', data);
 
@@ -248,7 +245,7 @@ const CreatePoint = () => {
               >
                 <option value="0">Selecione uma UF</option>
                 {ufs.map(uf => (
-                  <option value={uf}>{uf}</option>
+                  <option key={uf} value={uf}>{uf}</option>
                 ))}
               </select>
             </div>
@@ -262,7 +259,7 @@ const CreatePoint = () => {
               >
                 <option value="0">Selecione uma Cidade</option>
                 {cities.map(city => (
-                  <option value={city}>{city}</option>
+                  <option key={city} value={city}>{city}</option>
                 ))}
               </select>
             </div>
